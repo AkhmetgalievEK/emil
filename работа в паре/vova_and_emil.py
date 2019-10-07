@@ -7,48 +7,40 @@ canvas=tk.Canvas(root)
 delta = 0
 up = True
 right = True 
-"""
-Функции встречающиеся в коде:
-canvas.move('тэг объекта', dx, dy), где dx - перемещение по х, 
-dy - по y,тэг объекта - класс к которому он причастен
-canvas.after(t, имя функции), t -- время в миллисекундах
-"""
-def right_hand_move():
-    """Движение правой руки
-    """
+
+
+def right_hand_forefinger_move():
+
     global delta, up
     if delta < 15 and up:
         delta += 1
-        canvas.move('rightarm', 0, 1)
+        canvas.move('right_forefinger', 0, 1)
     elif delta > 0 and (not up):
         delta += -1
-        canvas.move('rightarm', 0, -1)
+        canvas.move('right_forefinger', 0, -1)
     if delta == 15:
         up = False
     elif delta == 0:
         up = True
 
-    canvas.after(15, right_hand_move)
+    canvas.after(15, right_hand_forefinger_move)
 
 
-def left_hand_move():
-    """Движение левой руки
-    """
+def left_hand_forefinger_move():
+
     global delta, right
     if delta < 15 and right:
         delta += 1
-        canvas.move('leftarm', 1, 0)
+        canvas.move('left_forefinger', 1, 0)
     elif delta > 0 and (not right):
         delta += -1
-        canvas.move('leftarm', -1, 0)
+        canvas.move('left_forefinger', -1, 0)
     if delta == 15:
         right = False
     elif delta == 0:
         right = True
 
-    canvas.after(15, left_hand_move)
-
-
+    canvas.after(15, left_hand_forefinger_move)
 
 
 #####################################################################
@@ -115,7 +107,7 @@ canvas.create_polygon(455.0, 199.0, 438.0, 198.0,
 		230.0, 497.0, 215.0, 463.0, 203.0, 
 		454.0, 199.0, 454.0, 199.0, 
 		fill = "#e3a983", width=1.0, 
-		outline = "#cd885f",tags = ('leftarm')
+		outline = "#cd885f",tags = ('left_forefinger')
 )
 canvas.create_polygon(308.0, 154.0, 267.0, 164.0, 
 		244.0, 182.0, 232.0, 200.0, 233.0, 
@@ -203,7 +195,7 @@ canvas.create_polygon(784.0, 263.0, 745.0, 261.0,
 		296.0, 772.0, 283.0, 782.0, 261.0, 
 		782.0, 261.0, fill = "#e3a983", 
 		width=1.0, outline = "#cd885f",
-		tags = ('rightarm')
+		tags = ('right_forefinger')
 )
 canvas.create_polygon(872.0, 276.0, 849.0, 292.0, 
 		839.0, 309.0, 820.0, 322.0, 793.0, 
@@ -294,10 +286,9 @@ canvas.create_polygon(980.0, 284.0, 979.0, 320.0,
 
 canvas.grid(sticky="nwes")
 
-canvas.move('leftarm', -15, 0)
-canvas.move('rightarm', 5, 0)
-right_hand_move()   #Вызов функции движение правой руки
-left_hand_move()    #Вызов функции движение левой руки
+
+right_hand_forefinger_move()
+left_hand_forefinger_move()
 
 
 root.mainloop()
